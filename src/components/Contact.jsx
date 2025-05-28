@@ -19,27 +19,24 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
+
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
       setFormData({ name: '', email: '', message: '' });
-      
-      // Reset success message after 3 seconds
       setTimeout(() => setIsSuccess(false), 3000);
     }, 1500);
   };
 
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { 
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
         duration: 0.6,
         ease: [0.6, -0.05, 0.01, 0.99]
-      } 
+      }
     }
   };
 
@@ -53,25 +50,32 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen text-white">
+    <div
+      id='contact'
+      className="relative min-h-screen text-white my-12 shadow-xl flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 rounded-3xl transition-colors duration-500"
+    >
       {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden opacity-20">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(15)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute rounded-full bg-purple-500/20"
+            className="absolute rounded-full"
+            style={{
+              background: 'linear-gradient(135deg, #a78bfa33 0%, #f472b633 100%)',
+              filter: 'blur(2.5px)'
+            }}
             initial={{
               x: Math.random() * 100,
               y: Math.random() * 100,
-              width: Math.random() * 10 + 2,
-              height: Math.random() * 10 + 2,
-              opacity: Math.random() * 0.3 + 0.1
+              width: Math.random() * 50 + 40,
+              height: Math.random() * 50 + 40,
+              opacity: Math.random() * 0.18 + 0.07
             }}
             animate={{
-              y: [null, (Math.random() - 0.5) * 100],
-              x: [null, (Math.random() - 0.5) * 100],
+              y: [null, (Math.random() - 0.5) * 120],
+              x: [null, (Math.random() - 0.5) * 120],
               transition: {
-                duration: Math.random() * 15 + 10,
+                duration: Math.random() * 18 + 12,
                 repeat: Infinity,
                 repeatType: "reverse",
                 ease: "linear"
@@ -81,49 +85,49 @@ export default function Contact() {
         ))}
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-5xl w-full mx-auto relative z-10 px-4 py-12">
         <motion.div
           initial="hidden"
           animate="visible"
           variants={staggerContainer}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
-          <motion.h1 
+          <motion.h1
             variants={fadeIn}
-            className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
+            className="text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-400 dark:from-blue-300 dark:via-purple-300 dark:to-pink-300"
           >
             Get In Touch
           </motion.h1>
-          <motion.p 
+          <motion.p
             variants={fadeIn}
-            className="text-xl text-gray-300 max-w-2xl mx-auto"
+            className="text-lg text-gray-600 dark:text-gray-300 max-w-xl mx-auto"
           >
             Have a project in mind or want to collaborate? Feel free to reach out!
           </motion.p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-10">
           {/* Contact Information */}
-          <motion.div 
+          <motion.div
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="space-y-6"
+            className="space-y-7"
           >
-            <motion.div 
+            <motion.div
               variants={fadeIn}
-              className="bg-gray-800/50 p-8 rounded-2xl border border-gray-700/50 backdrop-blur-sm hover:border-purple-500/30 transition-all duration-300 shadow-xl"
-              whileHover={{ y: -5 }}
+              className="bg-white/80 p-6 rounded-2xl border border-gray-200/80 backdrop-blur-lg hover:border-purple-400/60 transition-all duration-300 shadow-xl dark:bg-gray-900/80 dark:border-gray-800/80"
+              whileHover={{ y: -3, scale: 1.03 }}
             >
               <div className="flex items-start gap-4">
-                <div className="p-3 bg-blue-900/30 rounded-full text-blue-400 border border-blue-500/30">
+                <div className="p-3 bg-blue-200/40 rounded-full text-blue-500 border border-blue-400/30 dark:bg-blue-900/30 dark:text-blue-300">
                   <FiMail className="text-2xl" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-100 mb-2">Email Me</h3>
-                  <a 
-                    href="mailto:contact@example.com" 
-                    className="text-gray-400 hover:text-blue-400 transition-colors"
+                  <h3 className="text-lg font-semibold text-blue-500 dark:text-blue-300 mb-1">Email Me</h3>
+                  <a
+                    href="mailto:contact@example.com"
+                    className="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors underline underline-offset-2"
                   >
                     contact@example.com
                   </a>
@@ -131,36 +135,36 @@ export default function Contact() {
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               variants={fadeIn}
-              className="bg-gray-800/50 p-8 rounded-2xl border border-gray-700/50 backdrop-blur-sm hover:border-purple-500/30 transition-all duration-300 shadow-xl"
-              whileHover={{ y: -5 }}
+              className="bg-white/80 p-6 rounded-2xl border border-gray-200/80 backdrop-blur-lg hover:border-purple-400/60 transition-all duration-300 shadow-xl dark:bg-gray-900/80 dark:border-gray-800/80"
+              whileHover={{ y: -3, scale: 1.03 }}
             >
               <div className="flex items-start gap-4">
-                <div className="p-3 bg-purple-900/30 rounded-full text-purple-400 border border-purple-500/30">
+                <div className="p-3 bg-purple-200/40 rounded-full text-purple-500 border border-purple-400/30 dark:bg-purple-900/30 dark:text-purple-300">
                   <FiMapPin className="text-2xl" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-100 mb-2">Location</h3>
-                  <p className="text-gray-400">Casablanca, Morocco</p>
+                  <h3 className="text-lg font-semibold text-purple-500 dark:text-purple-300 mb-1">Location</h3>
+                  <p className="text-gray-600 dark:text-gray-300">Casablanca, Morocco</p>
                 </div>
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               variants={fadeIn}
-              className="bg-gray-800/50 p-8 rounded-2xl border border-gray-700/50 backdrop-blur-sm hover:border-purple-500/30 transition-all duration-300 shadow-xl"
-              whileHover={{ y: -5 }}
+              className="bg-white/80 p-6 rounded-2xl border border-gray-200/80 backdrop-blur-lg hover:border-purple-400/60 transition-all duration-300 shadow-xl dark:bg-gray-900/80 dark:border-gray-800/80"
+              whileHover={{ y: -3, scale: 1.03 }}
             >
               <div className="flex items-start gap-4">
-                <div className="p-3 bg-green-900/30 rounded-full text-green-400 border border-green-500/30">
+                <div className="p-3 bg-green-200/40 rounded-full text-green-500 border border-green-400/30 dark:bg-green-900/30 dark:text-green-300">
                   <FiPhone className="text-2xl" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-100 mb-2">Call Me</h3>
-                  <a 
-                    href="tel:+212600000000" 
-                    className="text-gray-400 hover:text-green-400 transition-colors"
+                  <h3 className="text-lg font-semibold text-green-500 dark:text-green-300 mb-1">Call Me</h3>
+                  <a
+                    href="tel:+212600000000"
+                    className="text-gray-600 dark:text-gray-300 hover:text-green-500 dark:hover:text-green-400 transition-colors underline underline-offset-2"
                   >
                     +212 600-000000
                   </a>
@@ -170,24 +174,24 @@ export default function Contact() {
           </motion.div>
 
           {/* Contact Form */}
-          <motion.div 
+          <motion.div
             variants={fadeIn}
-            className="bg-gray-800/50 p-8 rounded-2xl border border-gray-700/50 backdrop-blur-sm shadow-xl"
+            className="bg-white/90 p-8 rounded-2xl border border-gray-200/80 backdrop-blur-lg hover:border-purple-400/60 transition-all duration-300 shadow-2xl dark:bg-gray-900/90 dark:border-gray-800/80"
           >
             {isSuccess ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="text-center py-12"
+                className="text-center py-10"
               >
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-green-900/30 rounded-full mb-6 border border-green-500/30">
-                  <FiCheck className="text-4xl text-green-400" />
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-green-900/40 rounded-full mb-5 border border-green-500/30">
+                  <FiCheck className="text-3xl text-green-400" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-100 mb-2">Message Sent!</h3>
-                <p className="text-gray-400 mb-6">Thank you for reaching out. I'll get back to you soon.</p>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Message Sent!</h3>
+                <p className="text-gray-600 dark:text-gray-400 mb-5">Thank you for reaching out. I'll get back to you soon.</p>
                 <motion.button
                   onClick={() => setIsSuccess(false)}
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:opacity-90 transition-all"
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-5 py-2.5 rounded-lg hover:opacity-90 transition-all"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -196,14 +200,14 @@ export default function Contact() {
               </motion.div>
             ) : (
               <>
-                <h2 className="text-2xl font-bold text-gray-100 mb-8">Send Me a Message</h2>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-7">Send Me a Message</h2>
                 <form onSubmit={handleSubmit}>
                   <div className="space-y-6">
                     <motion.div
                       whileHover={{ scale: 1.01 }}
                       whileFocus={{ scale: 1.01 }}
                     >
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                         Your Name
                       </label>
                       <input
@@ -213,7 +217,7 @@ export default function Contact() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-lg bg-gray-700/50 border border-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-gray-100 placeholder-gray-400"
+                        className="w-full px-4 py-2.5 rounded-lg bg-gray-100/80 border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-gray-900 dark:bg-gray-800/80 dark:border-gray-700 dark:text-gray-100 placeholder-gray-400 outline-none"
                         placeholder="John Doe"
                       />
                     </motion.div>
@@ -222,7 +226,7 @@ export default function Contact() {
                       whileHover={{ scale: 1.01 }}
                       whileFocus={{ scale: 1.01 }}
                     >
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                         Email Address
                       </label>
                       <input
@@ -232,7 +236,7 @@ export default function Contact() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-lg bg-gray-700/50 border border-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-gray-100 placeholder-gray-400"
+                        className="w-full px-4 py-2.5 rounded-lg bg-gray-100/80 border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-gray-900 dark:bg-gray-800/80 dark:border-gray-700 dark:text-gray-100 placeholder-gray-400 outline-none"
                         placeholder="you@example.com"
                       />
                     </motion.div>
@@ -241,7 +245,7 @@ export default function Contact() {
                       whileHover={{ scale: 1.01 }}
                       whileFocus={{ scale: 1.01 }}
                     >
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                         Your Message
                       </label>
                       <textarea
@@ -251,7 +255,7 @@ export default function Contact() {
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-lg bg-gray-700/50 border border-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-gray-100 placeholder-gray-400"
+                        className="w-full px-4 py-2.5 rounded-lg bg-gray-100/80 border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-gray-900 dark:bg-gray-800/80 dark:border-gray-700 dark:text-gray-100 placeholder-gray-400 outline-none"
                         placeholder="Hello, I'd like to talk about..."
                       ></textarea>
                     </motion.div>
@@ -260,8 +264,8 @@ export default function Contact() {
                       type="submit"
                       disabled={isSubmitting}
                       className={`w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
-                        isSubmitting 
-                          ? 'bg-blue-800/50 text-blue-300' 
+                        isSubmitting
+                          ? 'bg-blue-800/50 text-blue-300 cursor-not-allowed'
                           : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-500 hover:to-purple-500'
                       }`}
                       whileHover={!isSubmitting ? { scale: 1.02 } : {}}

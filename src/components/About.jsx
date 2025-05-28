@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { useTheme } from './theme-provider';
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
-
+const {theme} = useTheme();
   useEffect(() => {
     setIsVisible(true);
   }, []);
@@ -62,36 +63,42 @@ const About = () => {
   };
 
   return (
-    <div className="min-h-screen text-white">
+    <div id='about' className="relative min-h-screen text-white my-9 bg-white shadow shadow-gray-400 flex items-center justify-center overflow-hidden dark:bg-gray-900 rounded-3xl">
       {/* Animated Background */}
       <div className="fixed inset-0 overflow-hidden -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900 to-gray-800 opacity-90"></div>
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
         
-        {/* Floating particles */}
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-blue-400/20"
-            initial={{
-              x: Math.random() * 100,
-              y: Math.random() * 100,
-              width: Math.random() * 10 + 2,
-              height: Math.random() * 10 + 2,
-              opacity: Math.random() * 0.5 + 0.1
-            }}
-            animate={{
-              y: [null, (Math.random() - 0.5) * 100],
-              x: [null, (Math.random() - 0.5) * 100],
-              transition: {
-                duration: Math.random() * 10 + 10,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "linear"
-              }
-            }}
-          />
-        ))}
+        {/* Floating particles as circles (radius animation) */}
+        {[...Array(20)].map((_, i) => {
+          // Generate random initial values for each particle
+          const size = Math.random() * 10 + 2;
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          const opacity = Math.random() * 0.5 + 0.1;
+          const radius = size / 2;
+          return (
+            <motion.div
+              key={i}
+              className="absolute rounded-full bg-blue-400/20"
+              style={{
+                width: `${size}rem`,
+                height: `${size}rem`,
+                left: `${x}%`,
+                top: `${y}%`,
+                opacity: opacity
+              }}
+              animate={{
+                scale: [1, 1.2, 1],
+                transition: {
+                  duration: Math.random() * 10 + 10,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  ease: "linear"
+                }
+              }}
+            />
+          );
+        })}
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative">
