@@ -116,7 +116,7 @@ const {theme} = useTheme();
             About Me
           </motion.h1>
           <motion.p 
-            className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
             whileHover={{ scale: 1.01 }}
           >
             Full-stack developer crafting <span className="text-blue-300">digital experiences</span> with <span className="text-purple-300">2 years</span> of hands-on expertise
@@ -136,7 +136,7 @@ const {theme} = useTheme();
           >
             {/* Bio Card */}
             <motion.div 
-              className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-8 backdrop-blur-lg shadow-xl"
+              className="bg-gray-300 border-gray-200 dark:bg-gray-800/30 border dark:border-gray-700/50 rounded-2xl p-8 backdrop-blur-lg shadow-xl"
               whileHover={cardHover}
               transition={{ type: "spring" }}
             >
@@ -157,19 +157,19 @@ const {theme} = useTheme();
                   My Developer Journey
                 </h2>
               </div>
-              <div className="space-y-4 text-gray-300 leading-relaxed">
+              <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
                 <p>
-                  Transitioning from Laravel to tech, I've spent <span className="text-purple-300 font-medium">2 years</span> mastering full-stack development, delivering <span className="text-blue-300 font-medium">3+ projects</span> and contributing to <span className="text-green-300 font-medium">3 open-source</span> initiatives.
+                  Transitioning from Laravel to tech, I've spent <span className="text-purple-500 dark:text-purple-300 font-medium">2 years</span> mastering full-stack development, delivering <span className="text-blue-500 dark:text-blue-300 font-medium">3+ projects</span> and contributing to <span className="text-green-500 dark:text-green-300 font-medium">3 open-source</span> initiatives.
                 </p>
                 <p>
-                  I specialize in bridging <span className="text-yellow-300">frontend aesthetics</span> with <span className="text-green-300">backend robustness</span>, particularly passionate about performance optimization and clean architecture.
+                  I specialize in bridging <span className="text-yellow-600 dark:text-yellow-300">frontend aesthetics</span> with <span className="text-green-600 dark:text-green-300">backend robustness</span>, particularly passionate about performance optimization and clean architecture.
                 </p>
               </div>
             </motion.div>
 
-            {/* Interests Card */}
+            {/* Interests Card */}}
             <motion.div 
-              className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-8 backdrop-blur-lg shadow-xl"
+              className="bg-gray-300 border-gray-200 dark:bg-gray-800/30 border dark:border-gray-700/50 rounded-2xl p-8 backdrop-blur-lg shadow-xl"
               whileHover={cardHover}
               transition={{ type: "spring" }}
             >
@@ -218,7 +218,7 @@ const {theme} = useTheme();
           >
             {/* Tech Stack Card */}
             <motion.div 
-              className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-8 backdrop-blur-lg shadow-xl"
+              className="bg-gray-300 border-gray-200 dark:bg-gray-800/30 border dark:border-gray-700/50 rounded-2xl p-8 backdrop-blur-lg shadow-xl"
               whileHover={cardHover}
               transition={{ type: "spring" }}
             >
@@ -261,7 +261,7 @@ const {theme} = useTheme();
 
             {/* Philosophy Card */}
             <motion.div 
-              className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-8 backdrop-blur-lg shadow-xl"
+              className=  "bg-gray-300 border-gray-200 dark:bg-gray-800/30 border dark:border-gray-700/50 rounded-2xl p-8 backdrop-blur-lg shadow-xl"
               whileHover={cardHover}
               transition={{ type: "spring" }}
             >
@@ -281,7 +281,7 @@ const {theme} = useTheme();
                   Development Philosophy
                 </h2>
               </div>
-              <div className="space-y-4 text-gray-300">
+              <div className="space-y-4 dark:text-gray-300 text-gray-700">
                 {[
                   "Build scalable solutions, not just working code",
                   "Prioritize maintainability and documentation",
