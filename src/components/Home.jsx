@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useTheme } from './theme-provider';
-import Profile from '../assets/profile.jpg';
+import Profile from '../assets/Profile.jpg';
 
 const backgroundIcons = ['💻', '🌐', '🔧', '📱', '🚀', '🔌', '💾', '📊', '⭐', '💡', '🎯', '🔥'];
 
