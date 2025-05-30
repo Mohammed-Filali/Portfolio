@@ -28,7 +28,7 @@ export default function FullPageLayout({ children }) {
     };
   }, []);
 
- const navItems = [
+  const navItems = [
     { name: 'Home', path: '/#home' },
     { name: 'About', path: '/#about' },
     { name: 'Projects', path: '/#projects' },
@@ -44,6 +44,7 @@ export default function FullPageLayout({ children }) {
 
   return (
     <div className="relative w-full min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20 dark:from-gray-900 dark:via-blue-900/30 dark:to-purple-900/30 text-gray-900 dark:text-gray-100">
+      {/* Background elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full blur-3xl animate-pulse bg-gradient-to-r from-blue-400/20 to-purple-500/20 dark:from-blue-900/40 dark:to-purple-900/40" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl animate-pulse delay-1000 bg-gradient-to-r from-purple-400/15 to-pink-500/15 dark:from-purple-900/30 dark:to-pink-900/30" />
@@ -60,14 +61,15 @@ export default function FullPageLayout({ children }) {
         />
       </div>
 
+      {/* Header */}
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
           ? 'backdrop-blur-xl bg-white/70 dark:bg-gray-900/70 shadow-2xl border-b border-white/20 dark:border-gray-800/40'
           : 'backdrop-blur-md bg-white/50 dark:bg-gray-900/50'
       }`}>
-<div className="relative">
+        <div className="relative">
           <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
               {/* Logo */}
               <div className="flex items-center space-x-3 group cursor-pointer">
@@ -78,7 +80,7 @@ export default function FullPageLayout({ children }) {
                   </div>
                   <Sparkles className="absolute -top-1 -right-1 w-4 h-4 text-yellow-400 opacity-0 group-hover:opacity-100 transition-all duration-300 animate-spin" />
                 </div>
-                <div>
+                <div className="hidden sm:block">
                   <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent group-hover:from-blue-500 group-hover:via-purple-500 group-hover:to-pink-500 transition-all duration-300 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400">
                     Mohammed Filali
                   </h1>
@@ -88,20 +90,20 @@ export default function FullPageLayout({ children }) {
                 </div>
               </div>
 
-              {/* Navigation */}
-              <nav className="hidden lg:flex items-center space-x-1">
+              {/* Desktop Navigation */}
+              <nav className="hidden md:flex items-center space-x-1">
                 {navItems.map((item) => (
                   <a
                     key={item.name}
                     href={item.path}
-                    className="relative px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 group rounded-lg"
+                    className="relative px-3 sm:px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 group rounded-lg"
                   >
                     <span className="relative z-10">{item.name}</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 dark:from-blue-900/20 dark:to-purple-900/20" />
                     <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-3/4 group-hover:left-1/8 transition-all duration-300 dark:from-blue-400 dark:to-purple-400" />
                   </a>
                 ))}
-                <div className="ml-4">
+                <div className="ml-2 sm:ml-4">
                   <ModeToggle />
                 </div>
               </nav>
@@ -109,7 +111,8 @@ export default function FullPageLayout({ children }) {
               {/* Mobile Menu Toggle */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden p-2 rounded-lg bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm hover:bg-white/30 dark:hover:bg-gray-800/30 transition-all duration-300"
+                className="md:hidden p-2 rounded-lg bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm hover:bg-white/30 dark:hover:bg-gray-800/30 transition-all duration-300"
+                aria-label="Toggle menu"
               >
                 <div className="relative w-6 h-6">
                   <Menu className={`absolute w-6 h-6 transition-all duration-300 ${isMobileMenuOpen ? 'rotate-180 scale-0' : 'rotate-0 scale-100'}`} />
@@ -118,22 +121,60 @@ export default function FullPageLayout({ children }) {
               </button>
             </div>
           </div>
-        </div>      </header>
+        </div>
+      </header>
 
-      <div className={`fixed inset-0 z-40 lg:hidden transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-        {/* Mobile menu content omitted for brevity */}
+      {/* Mobile Menu */}
+      <div className={`fixed inset-0 z-40 md:hidden transition-all duration-500 ease-in-out ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
+        <div className="absolute inset-0 bg-black/30 dark:bg-black/50 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)} />
+        <div className={`absolute top-16 right-0 w-64 h-[calc(100vh-4rem)] bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl shadow-xl transition-transform duration-500 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+          <div className="flex flex-col h-full p-4">
+            <div className="flex flex-col space-y-2">
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.path}
+                  className="px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 rounded-lg transition-colors duration-300"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
+              ))}
+            </div>
+            <div className="mt-auto pt-4 border-t border-gray-200/50 dark:border-gray-700/50">
+              <div className="flex justify-between items-center px-4 py-2">
+                <span className="text-sm text-gray-600 dark:text-gray-400">Theme</span>
+                <ModeToggle />
+              </div>
+              <div className="flex justify-center space-x-4 mt-4">
+                {socialLinks.map(({ name, icon: Icon, href }) => (
+                  <a
+                    key={name}
+                    href={href}
+                    className="p-2 rounded-full bg-gray-100/50 dark:bg-gray-800/50 hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-colors duration-300"
+                    aria-label={name}
+                  >
+                    <Icon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
+      {/* Main Content */}
       <main className="relative z-10 pt-16">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
-            {children}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          {children}
         </div>
       </main>
 
+      {/* Footer */}
       <footer className="relative z-10 mt-20">
- <div className="relative backdrop-blur-xl bg-white/70 dark:bg-gray-900/70 border-t border-white/20 dark:border-gray-800/20">
+        <div className="relative backdrop-blur-xl bg-white/70 dark:bg-gray-900/70 border-t border-white/20 dark:border-gray-800/20">
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
             {/* Branding */}
             <div className="flex items-center space-x-3 group">
               <div className="relative">
@@ -169,11 +210,11 @@ export default function FullPageLayout({ children }) {
             </div>
 
             {/* Newsletter */}
-            <div className="text-center lg:text-right">
+            <div className="text-center md:text-right">
               <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
                 Stay updated with my latest work
               </div>
-              <div className="flex max-w-sm ml-auto">
+              <div className="flex max-w-sm mx-auto md:ml-auto">
                 <input
                   type="email"
                   placeholder="Enter your email"
@@ -187,10 +228,11 @@ export default function FullPageLayout({ children }) {
           </div>
 
           {/* Footer Bottom */}
-          <div className="mt-12 pt-8 border-t border-gray-200/50 dark:border-gray-700/50 text-center text-sm text-gray-500 dark:text-gray-400">
+          <div className="mt-8 pt-6 border-t border-gray-200/50 dark:border-gray-700/50 text-center text-sm text-gray-500 dark:text-gray-400 pb-6">
             &copy; {new Date().getFullYear()} Mohammed Filali. All rights reserved.
           </div>
-        </div>      </footer>
+        </div>
+      </footer>
     </div>
   );
 }
