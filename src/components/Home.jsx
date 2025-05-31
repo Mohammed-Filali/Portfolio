@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useTheme } from './theme-provider';
+import gsap from 'gsap';
 import Profile from '../assets/Profile.jpg';
 
 const backgroundIcons = ['💻', '🌐', '🔧', '📱', '🚀', '🔌', '💾', '📊', '⭐', '💡', '🎯', '🔥'];
@@ -9,6 +10,8 @@ export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
   const containerRef = useRef(null);
+  const iconRefs = useRef([]);
+  const contentRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 100);
@@ -24,6 +27,33 @@ export default function Home() {
     const container = containerRef.current;
     if (container) {
       container.addEventListener('mousemove', handleMouseMove);
+    }
+
+    // GSAP Floating Animation for Icons
+    iconRefs.current.forEach((icon, index) => {
+      gsap.to(icon, {
+        y: -15,
+        duration: 3 + Math.random() * 2,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut',
+        delay: Math.random() * 2,
+      });
+    });
+
+    // GSAP Fade-in Animation for Content
+    if (contentRef.current) {
+      gsap.fromTo(
+        contentRef.current,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'power2.out',
+          delay: 0.2,
+        }
+      );
     }
 
     return () => {
@@ -65,16 +95,17 @@ export default function Home() {
         />
       </div>
 
-      {/* Floating icons */}
+      {/* Floating icons with GSAP */}
       <div className="absolute inset-0 z-0">
         {backgroundIcons.map((icon, index) => {
           const top = `${Math.random() * 90}%`;
           const left = `${Math.random() * 90}%`;
-          const delay = `${Math.random() * 5}s`;
+          const ref = (el) => (iconRefs.current[index] = el);
           return (
             <div
               key={index}
-              className={`absolute text-3xl animate-float transition-transform duration-500 ${
+              ref={ref}
+              className={`absolute text-3xl transition-transform duration-500 ${
                 theme === 'dark'
                   ? 'text-purple-300/20 hover:text-purple-400'
                   : 'text-purple-600/10 hover:text-purple-500'
@@ -82,8 +113,6 @@ export default function Home() {
               style={{
                 top,
                 left,
-                animationDuration: '8s',
-                animationDelay: delay,
               }}
             >
               {icon}
@@ -93,7 +122,10 @@ export default function Home() {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center min-h-screen px-4 py-16">
+      <div
+        ref={contentRef}
+        className="relative z-10 flex flex-col items-center justify-center text-center min-h-screen px-4 py-16"
+      >
         {/* Profile image */}
         <div className="mb-10">
           <div className="w-40 h-40 md:w-60 md:h-60 rounded-full overflow-hidden border-4 shadow-xl group relative transition duration-500 border-purple-400/40">
@@ -132,13 +164,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Extra Animations and Effects */}
+      {/* Typing Animation */}
       <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
-        }
-
         @keyframes typing {
           from { width: 0; }
           to { width: 100%; }
