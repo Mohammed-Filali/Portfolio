@@ -1,57 +1,61 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ExternalLink, Github, Calendar, ArrowUpRight, Sparkles, Move } from 'lucide-react';
+import G_scool from '../assets/G_scool.png'
+import Media_hub from '../assets/mdia_hub.png';
+import Tasks from '../assets/task_manager.png';
+import portfolio from '../assets/portfolio.png';
 
 // Example projects
 const projects = [
   {
     id: 1,
-    title: "E-Commerce Platform",
-    description: "Une plateforme e-commerce complète avec paiements Stripe, gestion des stocks et dashboard admin. Interface responsive et moderne.",
-    shortDesc: "Plateforme e-commerce avec Stripe API",
-    tags: ["React", "Node.js", "MongoDB", "Stripe"],
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    date: "Mai 2023",
-    github: "https://github.com",
-    live: "https://demo-ecommerce.com",
+    title: "Learn-flow",
+    description: "gestion administrative et pédagogique d’un établissement scolaire. Mise en place de fonctionnalités clés telles que la gestion des élèves, des enseignants, des emplois du temps, des notes et des absences, avec une interface intuitive et sécurisée.",
+    shortDesc: "Plateform egestion scolaire complète",
+    tags: ["React", "Laravel", "MySQL", "Tailwind CSS"],
+    image: G_scool,
+    date: "Mai 2025",
+    github: "https://github.com/Mohammed-Filali/School_Management_front-end",
+    live: 'https://leaarn-floww.netlify.app/',
     gradient: "from-blue-600 via-purple-600 to-blue-800",
     category: "Web App"
   },
   {
     id: 2,
-    title: "AI Image Generator",
-    description: "Générateur d'art IA utilisant OpenAI DALL-E avec interface React intuitive. Galerie personnelle et partage social intégré.",
-    shortDesc: "Générer de l'art avec l'IA OpenAI DALL-E",
-    tags: ["React", "OpenAI", "Python", "FastAPI"],
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    date: "Août 2023",
-    github: "https://github.com",
-    live: "https://ai-art-gen.com",
+    title: "Mdia Hub",
+    description: "une plateforme web pour la commune permettant aux citoyens de soumettre des réclamations, publier des nouvelles locales, et proposer des suggestions. Gestion des contenus via un système d’administration sécurisé avec validation des publications et suivi des réclamations, favorisant la participation citoyenne et la communication entre la mairie et les habitants.",
+    shortDesc: "Plateforme web de gestion municipale",
+    tags: ["React", "Laravel", "MySQL", "Tailwind CSS"],
+    image: Media_hub,
+    date: "mars 2025",
+    github: "https://github.com/Mohammed-Filali/Mohammedia_Hub",
+    live: "https://mohammedia-hub.netlify.app/",
     gradient: "from-purple-600 via-pink-600 to-red-600",
-    category: "AI/ML"
+    category: "Web App"
   },
   {
     id: 3,
-    title: "Fitness Tracker",
-    description: "Application mobile complète avec plans d'entraînement personnalisés, suivi nutritionnel et communauté sociale.",
-    shortDesc: "App mobile fitness avec suivi complet",
-    tags: ["React Native", "Firebase", "Charts"],
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    date: "Jan 2023",
-    github: "https://github.com",
-    live: "https://fitness-app.com",
+    title: "My Tasks",
+    description: "Application mobile de gestion de tâches avec suivi des objectifs, rappels intelligents et statistiques avancées. Intégration de graphiques pour visualiser la productivité et les progrès.",
+    shortDesc: "App web de gestion de tâches",
+    tags: ["React", "Node Js", "Charts"],
+    image: Tasks,
+    date: "Jan 2025",
+    github: "https://github.com/Mohammed-Filali/Task_Manager",
+    live: "#",
     gradient: "from-green-500 via-emerald-600 to-teal-600",
-    category: "Mobile"
+    category: "Web App"
   },
   {
     id: 4,
     title: "Portfolio Dashboard",
     description: "Dashboard analytics pour portfolio avec métriques de performance, A/B testing et insights visiteurs en temps réel.",
     shortDesc: "Dashboard analytics pour portfolio",
-    tags: ["Next.js", "Tailwind", "Analytics"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    date: "Nov 2023",
-    github: "https://github.com",
-    live: "https://portfolio-dash.com",
+    tags: ["react.js", "Tailwind"],
+    image: portfolio,
+    date: "juin 2025",
+    github: "https://github.com/Mohammed-Filali/Portfolio",
+    live: "/",
     gradient: "from-orange-500 via-red-500 to-pink-600",
     category: "Analytics"
   }
